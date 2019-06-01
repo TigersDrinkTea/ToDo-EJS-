@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Document</title>
+</head>
+<body>
+
+<% if (kindOfDay === 'Saturday' || kindOfDay === 'Sunday'){ %>
+ <h1 style='color:purple'><%=kindOfDay%> ToDo List!</h1>
+<%}else{ %>
+    <h1 style='color:orange'><%=kindOfDay%> ToDo List!</h1>
+<%}%>
+   
+</body>
+</html>
+
+// scriplet tags <% %> are used for js code in HTML, you can sue it to controll the flow etc different colors of text but must use scriplet tags line by line.
+// try and just use all logic in js docs where possible, dont abuse.
