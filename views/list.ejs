@@ -7,14 +7,19 @@
 </head>
 <body>
 
-<% if (kindOfDay === 'Saturday' || kindOfDay === 'Sunday'){ %>
- <h1 style='color:purple'><%=kindOfDay%> ToDo List!</h1>
-<%}else{ %>
-    <h1 style='color:orange'><%=kindOfDay%> ToDo List!</h1>
+<h1><%=kindOfDay%></h1>
+
+<ul>
+<% for(var i=0; i<newListItem.length;i++) {%>
+    <li><%=newListItem[i]%></li>
 <%}%>
+</ul>
    
+    <form action='/' method='post'>
+    <input type="text" name="newItem" placeholder='Add New Item'>
+    <button type="submit">Add</button>
+    </form>
+
 </body>
 </html>
 
-// scriplet tags <% %> are used for js code in HTML, you can sue it to controll the flow etc different colors of text but must use scriplet tags line by line.
-// try and just use all logic in js docs where possible, dont abuse.

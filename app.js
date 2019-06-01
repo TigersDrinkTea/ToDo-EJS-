@@ -1,28 +1,46 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+
 const app = express();
 
+var items = [];
+
 app.set('view engine', 'ejs');
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 
-app.get('/', function (req,res){
 
-// getDay gives a date as a number sunday@0 saturday@6
-var today = new Date();
-var currentDay = today.getDay();
-var day = '';
+app.get('/', function (req, res) {
 
-var daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'thursday', 'Friday', 'Saturday'];
-day = daysOfWeek[currentDay];
+    var today = new Date();
+    var options = {
+        weekday: 'long',
+        day: 'numeric',
+        month: 'long',
+    };
 
-  // here we are saying: render the file called list(.ejs), then we pass in to that file the content for variable kindOfDay in the template from the logic on this page. 
-  //the point here is to do allot of logic and computing and then only pass over the result.
-  //Using the EJS markers <%= %> in the list.ejs file in the views folder. HAVE TO BE CALLED LIST.EJS AND IN FOLDER CALLED VIEWS.
-  res.render('list', {kindOfDay:day})
+    var day = today.toLocaleDateString('en-US', options);
+
+    res.render('list', {
+        kindOfDay: day,
+        newListItem: items
+    })
 
 });
 
-app.listen (3000, function () {
-console.log('server running on port 3000')
+app.post('/', function (req, res) {
+    var item = req.body.newItem;
+    items.push(item);
+
+    res.redirect('/');
 });
 
-// could have also used a switch statement on the currentDay and then just listed all the days and indexes, though when you see index you think array and its DRY.
+app.listen(3000, function () {
+    console.log('server running on port 3000')
+});
+
+// We have an input 'newItem' from user in ejs
+//this is then saved to the server and put to variable 'item'
+//'item' is then added to the array 'items' that make up the to do list in app.js
+// use a for loop to iterate creatin of new li items in the .ejs file with the content that the user submitted to our server served back to client.
