@@ -1,10 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-
+const date = require(__dirname + '/date.js'); // here we are requireing our own  module that we built to decide if you want to call getDate or getDay.
 const app = express();
 
-let items = [];
-let workItems = [];
+const items = [];
+const workItems = [];
 app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({
@@ -16,14 +16,8 @@ app.use(express.static('public'));
 
 app.get('/', function (req, res) {
 
-    let today = new Date();
-    let options = {
-        weekday: 'long',
-        day: 'numeric',
-        month: 'long',
-    };
-    let day = today.toLocaleDateString('en-US', options);
-
+   let day = date.getDate();
+ 
     res.render('list', {
         listTitle: day,
         newListItem: items
