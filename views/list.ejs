@@ -1,20 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/styles.css" rel="stylesheet">
+    </head>
+    <body>
+    
+    </body>
+</html>
+<div class ='box' id='heading'>
+   <h1><%=listTitle%></h1> 
+</div>
 
-    <title>Document</title>
-</head>
-<body>
+<div class='box'>
+    <% for(let i=0; i<newListItem.length;i++) {%>
+<div class='item'>
+<input type='checkbox'>
+ <p><%=newListItem[i]%></p>
+</div>
 
-<% if (kindOfDay === 'Saturday' || kindOfDay === 'Sunday'){ %>
- <h1 style='color:purple'><%=kindOfDay%> ToDo List!</h1>
-<%}else{ %>
-    <h1 style='color:orange'><%=kindOfDay%> ToDo List!</h1>
 <%}%>
    
-</body>
-</html>
+    <form class='item' action='/' method='post'>
+    <input type="text" name="newItem" placeholder='Add New Item' autocomplete='off'>
+    <button type="submit" name="list" value='<%= listTitle %>' >+</button>
+    </form>
 
-// scriplet tags <% %> are used for js code in HTML, you can sue it to controll the flow etc different colors of text but must use scriplet tags line by line.
-// try and just use all logic in js docs where possible, dont abuse.
+    <form class='item' action='/' method='post'>
+    
+    <button type="submit" name='delete'>X</button>
+    </form>
+
+    
+</<div>
+    
+</body>
+    
+</html>
